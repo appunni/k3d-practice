@@ -13,7 +13,6 @@ brew install --cask docker
 ```
 
 ### 3. Install kubectl
-kubectl is the Kubernetes command-line tool.
 
 ```bash
 brew install kubectl
