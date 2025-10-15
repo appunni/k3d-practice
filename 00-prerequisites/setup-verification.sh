@@ -1,9 +1,8 @@
 #!/bin/bash
 
 # Setup Verification Script for K3d Prerequisites
-# This script verifies that all required tools are installed
 
-echo "🔍 Verifying K3d Prerequisites Setup..."
+echo "Verifying K3d Prerequisites Setup..."
 echo "=================================="
 
 # Check Docker
@@ -22,4 +21,4 @@ k3d version
 
 echo ""
 echo "=================================="
-echo "✅ Setup verification complete!"
+echo "Setup verification complete!"

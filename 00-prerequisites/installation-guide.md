@@ -28,5 +28,5 @@ brew install k3d
 
 - [Homebrew Installation](https://brew.sh/)
 - [Docker Desktop for Mac](https://docs.docker.com/desktop/install/mac-install/)
-- [kubectl Installation](https://kubernetes.io/docs/tasks/tools/install-kubectl-macos/)
-- [K3d Installation](https://k3d.io/v5.8.x/#installation)
+- [kubectl Installation](https://kubernetes.io/docs/tasks/tools/install-kubectl-macos/#install-with-homebrew-on-macos)
+- [K3d Installation](https://k3d.io/v5.8.3/#other-installers)
