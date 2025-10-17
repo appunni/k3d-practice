@@ -3,4 +3,4 @@ kind: Simple
 metadata:
   name: my-first-config-cluster
 servers: 1
-agents: 1
+agents: 0
