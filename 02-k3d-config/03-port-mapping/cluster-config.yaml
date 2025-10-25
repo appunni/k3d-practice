@@ -12,6 +12,9 @@ ports:
   - port: 8443:443
     nodeFilters:
       - loadbalancer
-  - port: 9000:9000
+  - port: 9090:9090
+    nodeFilters:
+      - loadbalancer
+  - port: 9000:30000
     nodeFilters:
       - server:0
