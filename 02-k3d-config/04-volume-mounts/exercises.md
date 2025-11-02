@@ -16,7 +16,7 @@ Learn how to persist data and share files between host and K3d cluster nodes.
    ```bash
    mkdir -p /tmp/k3d-data
    mkdir -p /tmp/k3d-config
-   echo "Hello from host!" > /tmp/k3d-data/host-file.txt
+   echo "Hello from host" > /tmp/k3d-data/host-file.txt
    echo "foo-config=enabled" > /tmp/k3d-config/config.ini
    ```
 
@@ -34,11 +34,11 @@ Learn how to persist data and share files between host and K3d cluster nodes.
 4. Test volume mounts on nodes
    ```bash
    # Check server node
-   docker exec k3d-volume-mount-cluster-server-0 ls -la /data
+   docker exec k3d-volume-mount-cluster-server-0 ls /data
    docker exec k3d-volume-mount-cluster-server-0 cat /data/host-file.txt
    
    # Check agent node  
-   docker exec k3d-volume-mount-cluster-agent-0 ls -la /data
+   docker exec k3d-volume-mount-cluster-agent-0 ls /data
    docker exec k3d-volume-mount-cluster-agent-0 cat /shared-config/config.ini
    ```
 
@@ -49,13 +49,13 @@ Learn how to persist data and share files between host and K3d cluster nodes.
 
 6. Test writing data from pod to host
    ```bash
-   kubectl exec volume-test-pod -- sh -c "echo 'Written from pod!' > /data/pod-file.txt"
-   kubectl exec volume-test-pod -- ls -la /data
+   kubectl exec volume-test-pod -- sh -c "echo 'Written from pod' > /data/pod-file.txt"
+   kubectl exec volume-test-pod -- ls /data
    ```
 
 7. Verify file appears on host
    ```bash
-   ls -la /tmp/k3d-data/
+   ls /tmp/k3d-data/
    cat /tmp/k3d-data/pod-file.txt
    ```
 
