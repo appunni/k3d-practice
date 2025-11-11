@@ -99,10 +99,3 @@ Pods run with local images
 
 **Why?** K3d creates a Docker network and configures DNS so cluster nodes can reach the registry using `registry.localhost`. Your host machine accesses it via `localhost`.
 
-## Benefits of Local Registry
-
--  **Faster development** - No need to push to remote registries
--  **Offline development** - Works without internet
--  **Faster image pulls** - Local network speed
--  **Testing** - Test image distribution workflows locally
--  **Cost savings** - No registry hosting costs for testing
