@@ -40,10 +40,10 @@ Learn how to configure resource limits (memory/CPU) for k3d nodes to simulate co
    ```
    You should see `memory` capacity close to the limit (minus some overhead).
 
-### Expected Results
-- Cluster creates successfully.
-- Docker inspect shows the configured memory limits in bytes.
-- `kubectl get nodes` shows all nodes ready.
+6. Cleanup
+   ```bash
+   k3d cluster delete resource-limits-cluster
+   ```
 
 ## Understanding the Configuration
 
@@ -66,8 +66,3 @@ options:
 - `agentsMemory`: Sets the Docker memory limit for agent containers (workers).
 - These limits are applied to the **Docker container**, simulating a physical machine with that amount of RAM.
 - Kubernetes (k3s) inside the container detects this limit and adjusts its node capacity accordingly.
-
-## Cleanup
-```bash
-k3d cluster delete resource-limits-cluster
-```
