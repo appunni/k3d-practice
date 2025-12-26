@@ -22,10 +22,10 @@ Learn how to control Pod scheduling using Node Labels and Taints in k3d.
    # Check for tier=frontend and tier=backend
    ```
 
-3. Verify Node Taints:
+3. Verify Node Taints (Server Isolation):
    ```bash
-   kubectl describe node k3d-labels-taints-cluster-agent-1 | grep Taints
-   # Should see: dedicated=gpu:NoSchedule
+   kubectl describe node k3d-labels-taints-cluster-server-0 | grep Taints
+   # Should see: node-role.kubernetes.io/control-plane=true:NoSchedule
    ```
 
 4. Deploy the Frontend Pod (targets `tier=frontend`):
@@ -39,15 +39,15 @@ Learn how to control Pod scheduling using Node Labels and Taints in k3d.
    # Should be running on agent-0
    ```
 
-6. Deploy the GPU Pod (targets `tier=backend` with toleration):
+6. Deploy the Maintenance Pod (tolerates control-plane taint):
    ```bash
-   kubectl apply -f deployments/gpu-pod.yaml
+   kubectl apply -f deployments/maintenance-pod.yaml
    ```
 
-7. Verify GPU Pod placement:
+7. Verify Maintenance Pod placement:
    ```bash
-   kubectl get pod gpu-job -o wide
-   # Should be running on agent-1 (the tainted node)
+   kubectl get pod maintenance-job -o wide
+   # Should be running on server-0 (due to toleration)
    ```
 
 8. Cleanup
@@ -66,12 +66,12 @@ options:
         nodeFilters:
           - agent:0
     extraArgs:
-      - arg: "--node-taint=dedicated=gpu:NoSchedule"
+      - arg: "--node-taint=node-role.kubernetes.io/control-plane=true:NoSchedule"
         nodeFilters:
-          - agent:1
+          - server:0
 ```
 
 **Key Takeaway:**
 - **Node Labels**: Key-value pairs attached to nodes. Used with `nodeSelector` or `affinity` to tell Pods where to go.
 - **Node Taints**: "Repel" Pods from nodes. Only Pods with a matching `toleration` can schedule there.
-- **Use Case**: Taints are perfect for dedicated hardware (GPUs) or isolating specific workloads.
+- **Use Case**: Tainting the Control Plane (Server) ensures that user applications only run on Worker nodes (Agents), mimicking a production Kubernetes environment.
