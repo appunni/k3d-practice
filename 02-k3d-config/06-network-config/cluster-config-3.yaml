@@ -1,0 +1,7 @@
+apiVersion: k3d.io/v1alpha5
+kind: Simple
+metadata:
+  name: shared-cluster2
+servers: 1
+agents: 1
+network: k3d-shared-network
