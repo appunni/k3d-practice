@@ -29,9 +29,17 @@ brew install k3d
 
 ## Verification
 
-Run the verification script to check your setup:
+Run the following commands to verify that all tools are installed correctly:
+
 ```bash
-./setup-verification.sh
+# Check Docker
+docker -v
+
+# Check kubectl
+kubectl version --client
+
+# Check k3d
+k3d version
 ```
 
 ## References
