@@ -88,14 +88,10 @@ network: k3d-shared-network  # ← Key configuration
 ```
 → Uses: `k3d-shared-network` (shared with other clusters)
 
-## Key Takeaway
-
-**The `network:` option in k3d config controls Docker-level connectivity:**
-
+**Key Takeaway:**
 - **Without `network:`** → Each cluster gets isolated network
 - **With `network: <name>`** → Clusters share network and can communicate
-
-**Important**: Cross-cluster communication uses Docker node IPs, not pod IPs. Each cluster has its own pod network (CNI overlay - Flannel in k3s) that is isolated even when clusters share a Docker network. The `network:` config only affects Docker-level connectivity between cluster nodes, not pod-to-pod communication.
+- **Important**: Cross-cluster communication uses Docker node IPs, not pod IPs. Each cluster has its own pod network (CNI overlay - Flannel in k3s) that is isolated even when clusters share a Docker network.
 
 ## Use Cases
 

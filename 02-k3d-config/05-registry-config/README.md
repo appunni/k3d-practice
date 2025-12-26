@@ -69,25 +69,21 @@ Learn how to set up and use a local container registry with K3d for faster devel
 
 ## Understanding the Configuration
 
-**Registry settings:**
-- **Name**: `registry.localhost` (registry container name and DNS name)
-- **Host**: `0.0.0.0` (accessible from host machine)
-- **Port**: `5000` (standard registry port)
-
-**How it works:**
-```
-Docker Build → localhost:5000/image:tag
-    ↓
-Local Registry (registry.localhost)
-    ↓
-K3d Cluster pulls from registry
-    ↓
-Pods run with local images
+**Registry Config (cluster-config.yaml):**
+```yaml
+registries:
+  create:
+    name: registry.localhost
+    host: "0.0.0.0"
+    hostPort: "5000"
 ```
 
-## Important: localhost vs registry.localhost
+**Key Takeaway:**
+- `registries.create`: Instructs k3d to create a new registry container alongside the cluster.
+- `name`: The hostname of the registry within the Docker network (`registry.localhost`).
+- `hostPort: "5000"`: Exposes the registry on localhost:5000, allowing `docker push/pull` from the host.
 
-**Two different contexts:**
+**Important: localhost vs registry.localhost**
 
 1. **From your host machine:**
    - Use `localhost:5000` for building and pushing images

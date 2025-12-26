@@ -89,15 +89,8 @@ volumes:
 - `volume: /host/path:/container/path`: Mounts a host directory into the container.
 - `nodeFilters: [all]`: Mounts the volume on every node in the cluster.
 - `nodeFilters: [server:0]`: Mounts the volume only on the first server node.
-
-
-## Understanding the Configuration
-
-**Volume mounts in this example:**
-- `/tmp/k3d-data:/data` → Available on all nodes (server + agents)
-- `/tmp/k3d-config:/shared-config` → Available on specific nodes (server:0, agent:0)
-
-**How it works:**
+- **Example 1**: `/tmp/k3d-data:/data` → Available on all nodes (server + agents)
+- **Example 2**: `/tmp/k3d-config:/shared-config` → Available on specific nodes (server:0)
 ```
 Host filesystem (/tmp/k3d-data)
     ↓ (bind mount)
