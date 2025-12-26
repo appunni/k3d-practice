@@ -9,9 +9,6 @@ This folder contains your first hands-on experience with K3d clusters.
 - List nodes and system pods
 - Get familiar with basic K3d operations
 
-## Reference
-- **basic-commands.md** - Essential K3d and kubectl commands
-
 ## Exercise 1: Create Your First Cluster
 
 ### Steps:
@@ -73,3 +70,43 @@ This folder contains your first hands-on experience with K3d clusters.
    ```bash
    k3d cluster list
    ```
+
+## Key Commands Reference
+
+### Cluster Management
+```bash
+# Create a cluster
+k3d cluster create <cluster-name>
+
+# List clusters
+k3d cluster list
+
+# Delete a cluster
+k3d cluster delete <cluster-name>
+
+# Get cluster info
+k3d cluster get <cluster-name>
+
+# Start/Stop clusters
+k3d cluster start <cluster-name>
+k3d cluster stop <cluster-name>
+```
+
+### Kubectl Commands
+```bash
+# Cluster information
+kubectl cluster-info
+kubectl version
+
+# Node operations
+kubectl get nodes
+kubectl get nodes -o wide
+kubectl describe node <node-name>
+
+# System pods
+kubectl get pods -A
+kubectl get pods -n kube-system
+
+# Namespaces
+kubectl get namespaces
+```
