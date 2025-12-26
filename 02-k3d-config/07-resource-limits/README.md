@@ -5,7 +5,6 @@ Learn how to configure resource limits (memory/CPU) for k3d nodes to simulate co
 ## Learning Objectives
 - Configure resource limits for k3d nodes
 - Verify limits using Docker commands
-- Understand the difference between node limits and Kubernetes pod limits
 
 ## Exercise: Configure and Verify Resource Limits
 
@@ -34,13 +33,7 @@ Learn how to configure resource limits (memory/CPU) for k3d nodes to simulate co
    ```
    *Note: 256MB = 256 * 1024 * 1024 = 268435456 bytes.*
 
-5. (Optional) Verify that Kubernetes sees the resource limits:
-   ```bash
-   kubectl describe node k3d-resource-limits-cluster-agent-0 | grep -A 5 Capacity
-   ```
-   You should see `memory` capacity close to the limit (minus some overhead).
-
-6. Cleanup
+5. Cleanup
    ```bash
    k3d cluster delete resource-limits-cluster
    ```
