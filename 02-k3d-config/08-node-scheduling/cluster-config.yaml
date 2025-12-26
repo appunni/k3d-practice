@@ -1,0 +1,19 @@
+apiVersion: k3d.io/v1alpha5
+kind: Simple
+metadata:
+  name: labels-taints-cluster
+servers: 1
+agents: 2
+options:
+  k3s:
+    nodeLabels:
+      - label: tier=frontend
+        nodeFilters:
+          - agent:0
+      - label: tier=backend
+        nodeFilters:
+          - agent:1
+    extraArgs:
+      - arg: "--node-taint=dedicated=gpu:NoSchedule"
+        nodeFilters:
+          - agent:1
