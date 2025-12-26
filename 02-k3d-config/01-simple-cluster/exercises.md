@@ -45,3 +45,21 @@ Learn the basics of creating a K3d cluster from a configuration file.
    ```bash
    k3d cluster list
    ```
+
+## Understanding the Configuration
+
+**Basic Config (cluster-config.yaml):**
+```yaml
+apiVersion: k3d.io/v1alpha5
+kind: Simple
+metadata:
+  name: my-first-config-cluster
+servers: 1
+agents: 0
+```
+
+**Key Takeaway:**
+- `apiVersion` & `kind`: Required fields for k3d config.
+- `metadata.name`: Sets the name of the cluster (referenced in `k3d cluster list`).
+- `servers: 1`: Creates one control-plane node (master).
+- `agents: 0`: Creates zero worker nodes (workloads run on the server node in this case).

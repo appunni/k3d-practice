@@ -74,6 +74,25 @@ Learn how to persist data and share files between host and K3d cluster nodes.
 
 ## Understanding the Configuration
 
+**Volume Mount Config (cluster-config.yaml):**
+```yaml
+volumes:
+  - volume: /tmp/k3d-data:/data
+    nodeFilters:
+      - all
+  - volume: /tmp/k3d-config:/shared-config
+    nodeFilters:
+      - server:0
+```
+
+**Key Takeaway:**
+- `volume: /host/path:/container/path`: Mounts a host directory into the container.
+- `nodeFilters: [all]`: Mounts the volume on every node in the cluster.
+- `nodeFilters: [server:0]`: Mounts the volume only on the first server node.
+
+
+## Understanding the Configuration
+
 **Volume mounts in this example:**
 - `/tmp/k3d-data:/data` → Available on all nodes (server + agents)
 - `/tmp/k3d-config:/shared-config` → Available on specific nodes (server:0, agent:0)

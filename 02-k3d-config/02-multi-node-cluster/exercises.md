@@ -50,3 +50,22 @@ Learn about high availability and multi-node cluster configurations.
    ```bash
    k3d cluster delete multi-node-cluster
    ```
+
+## Understanding the Configuration
+
+**Multi-Node Config (cluster-config.yaml):**
+```yaml
+apiVersion: k3d.io/v1alpha5
+kind: Simple
+metadata:
+  name: multi-node-cluster
+servers: 3
+agents: 2
+image: rancher/k3s:latest
+```
+
+**Key Takeaway:**
+- `servers: 3`: Creates a High Availability (HA) control plane with 3 nodes.
+- `agents: 2`: Creates 2 dedicated worker nodes.
+- `image`: Specifies the k3s version to use (e.g., `rancher/k3s:latest`).
+

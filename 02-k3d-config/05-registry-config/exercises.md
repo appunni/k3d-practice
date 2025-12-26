@@ -99,3 +99,20 @@ Pods run with local images
 
 **Why?** K3d creates a Docker network and configures DNS so cluster nodes can reach the registry using `registry.localhost`. Your host machine accesses it via `localhost`.
 
+## Understanding the Configuration
+
+**Registry Config (cluster-config.yaml):**
+```yaml
+registries:
+  create:
+    name: registry.localhost
+    host: "0.0.0.0"
+    hostPort: "5000"
+```
+
+**Key Takeaway:**
+- `registries.create`: Instructs k3d to create a new registry container alongside the cluster.
+- `name`: The hostname of the registry within the Docker network.
+- `hostPort: "5000"`: Exposes the registry on localhost:5000, allowing `docker push/pull` from the host.
+
+

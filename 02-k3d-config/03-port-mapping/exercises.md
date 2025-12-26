@@ -80,3 +80,21 @@ Learn how to expose Kubernetes services to the host machine using port mapping.
     ```bash
     k3d cluster delete port-mapping-cluster
     ```
+
+## Understanding the Configuration
+
+**Port Mapping Config (cluster-config.yaml):**
+```yaml
+ports:
+  - port: 8080:80
+    nodeFilters:
+      - loadbalancer
+  - port: 9000:30000
+    nodeFilters:
+      - server:0
+```
+
+**Key Takeaway:**
+- `port: 8080:80`: Maps host port 8080 to container port 80.
+- `nodeFilters: [loadbalancer]`: Applies the mapping to the k3d loadbalancer (Traefik ingress).
+- `nodeFilters: [server:0]`: Applies the mapping directly to the first server node (useful for NodePort services).

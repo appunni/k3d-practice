@@ -1,0 +1,10 @@
+apiVersion: k3d.io/v1alpha5
+kind: Simple
+metadata:
+  name: resource-limits-cluster
+servers: 1
+agents: 2
+options:
+  runtime:
+    serversMemory: "512m"
+    agentsMemory: "256m"
