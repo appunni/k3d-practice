@@ -115,8 +115,8 @@ kubectl get nodes
    # Pods where env is dev OR prod
    kubectl get pods -l 'env in (dev,prod)'
 
-   # Pods where app is NOT cache
-   kubectl get pods -l 'app notin (cache)'
+   # Pods where app is NOT backend (returns only frontend Pods)
+   kubectl get pods -l 'app notin (backend)'
    ```
 
 7. Check if a label key exists at all:
@@ -281,13 +281,4 @@ spec:
 
 Without labels, Deployments and Services cannot identify which Pods belong to them.
 
-## CKAD Exam Tips
 
-- **`--show-labels`** — always use this when debugging label issues
-- **`-L key1,key2`** — adds label values as columns, great for comparing Pods side by side
-- **`-l key=value`** — filter flag, works on any resource (`kubectl get svc -l app=frontend`)
-- **Comma = AND** — `-l a=x,b=y` means both must match; there is no OR in equality-based selectors
-- **Quotes for set-based** — always wrap set-based selectors in quotes: `-l 'env in (dev,prod)'`
-- **`kubectl label --overwrite`** — required to change an existing label value; without it you get an error
-- **Labels are on any resource** — not just Pods; you can label Nodes, Services, Namespaces, etc.
-- **`kubectl get nodes --show-labels`** — useful for understanding node selectors in scheduling (Section 04)
