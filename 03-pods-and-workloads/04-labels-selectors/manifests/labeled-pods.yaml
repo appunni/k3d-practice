@@ -1,0 +1,64 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: frontend-dev
+  labels:
+    app: frontend
+    tier: web
+    env: dev
+spec:
+  containers:
+    - name: nginx
+      image: nginx:alpine
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: frontend-prod
+  labels:
+    app: frontend
+    tier: web
+    env: prod
+spec:
+  containers:
+    - name: nginx
+      image: nginx:alpine
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: backend-dev
+  labels:
+    app: backend
+    tier: api
+    env: dev
+spec:
+  containers:
+    - name: nginx
+      image: nginx:alpine
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: backend-prod
+  labels:
+    app: backend
+    tier: api
+    env: prod
+spec:
+  containers:
+    - name: nginx
+      image: nginx:alpine
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cache-dev
+  labels:
+    app: cache
+    tier: data
+    env: dev
+spec:
+  containers:
+    - name: redis
+      image: redis:alpine
