@@ -135,7 +135,7 @@ HPA automatically adjusts the replica count based on observed resource metrics.
 
 2. Create an HPA targeting 50% average CPU utilization:
    ```bash
-   kubectl autoscale deployment web --min=2 --max=8 --cpu-percent=50
+   kubectl autoscale deployment web --min=2 --max=8 --cpu=50%
    ```
 
 3. Check the HPA immediately:
@@ -169,7 +169,7 @@ HPA automatically adjusts the replica count based on observed resource metrics.
 7. Generate a dry-run HPA to see the output YAML structure:
    ```bash
    kubectl autoscale deployment web \
-     --min=2 --max=8 --cpu-percent=50 \
+     --min=2 --max=8 --cpu=50% \
      --dry-run=client -o yaml
    ```
 
@@ -249,8 +249,8 @@ If you have a manifest with `replicas: 2` **and** an HPA controlling the same De
 
 ```
 metrics-server
-    └── collects CPU/memory from each Pod every 15s
-            └── HPA controller evaluates every 15s
+    └── collects CPU/memory from each Pod (every 60s by default, via --metric-resolution)
+            └── HPA controller evaluates every 15s (via --horizontal-pod-autoscaler-sync-period)
                     └── compares current average metric vs target
                             └── scales Deployment up or down within min/max bounds
 ```
@@ -311,10 +311,10 @@ kubectl diff -f manifests/file.yaml
 kubectl patch deployment <name> --patch '{"spec": {"replicas": N}}'
 
 # Create HPA
-kubectl autoscale deployment <name> --min=N --max=N --cpu-percent=N
+kubectl autoscale deployment <name> --min=N --max=N --cpu=N%
 
 # Generate HPA YAML
-kubectl autoscale deployment <name> --min=N --max=N --cpu-percent=N --dry-run=client -o yaml
+kubectl autoscale deployment <name> --min=N --max=N --cpu=N% --dry-run=client -o yaml
 
 # Inspect HPA
 kubectl get hpa
